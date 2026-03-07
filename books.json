@@ -1,0 +1,389 @@
+[
+  {
+    "id": 1,
+    "name": "Mentiras em que as Mulheres Acreditam e a Verdade que as Liberta",
+    "author": "Nancy Leigh DeMoss",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Ótimo",
+    "photo": "images/mentiras-mulheres.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Teologia Sistemática",
+    "author": "Millard J. Erickson",
+    "price": "R$ 60,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(sem marcas de uso)",
+    "photo": "images/teologia-sistematica.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Inteligência Humilhada",
+    "author": "Jonas Madureira",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Novo",
+    "photo": "images/inteligencia.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Deleitando-se em Cristo",
+    "author": "Michael Reeves",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas do tempo)",
+    "photo": "images/deleitando-cristo.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Deleitando-se na Trinidade",
+    "author": "Michael Reeves",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Ótimo(marcas de uso)",
+    "photo": "images/deleitando-trindade.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "Deleitando-se na Oração",
+    "author": "Michael Reeves",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Novo",
+    "photo": "images/deleitando-oracao.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "O Discipulo Radical",
+    "author": "John Stott",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas do tempo)",
+    "photo": "images/discipulo-radical.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "Confição de Fé Batista de 1689",
+    "author": "C.h Spurgeon",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas de uso)",
+    "photo": "images/conficao-batista.jpeg"
+  },
+  {
+    "id": 9,
+    "name": "31 coisas que toda mulher deve saber",
+    "author": "Elizabeth George",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Otimo(sem marcas de uso)",
+    "photo": "images/31-coisas.jpeg"
+  },
+  {
+    "id": 10,
+    "name": "Elas por Elas",
+    "author": "Nancy Leigh DeMoss",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas de uso)",
+    "photo": "images/ela-elas.jpeg"
+  },
+  {
+    "id": 11,
+    "name": "Idolos do Coração",
+    "author": "Elyse Fitzpatrick",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Ótimo(com marcas de uso)",
+    "photo": "images/idolos-coracao.jpeg"
+  },
+  {
+    "id": 12,
+    "name": "Deixe-me ser Mulher",
+    "author": "Elisabethe Elliot",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Ótimo(sem marcas de uso)",
+    "photo": "images/deixe-me.jpeg"
+  },
+  {
+    "id": 13,
+    "name": "A Verdade Permanece",
+    "author": "John MacArthur",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas do tempo)",
+    "photo": "images/verdade-permanece.jpeg"
+  },
+  {
+    "id": 14,
+    "name": "Deus o Pai Deus o Filho",
+    "author": "Dr. Martyn Lloyd-Jones",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Otimo(sem marcas de uso, marca do tempo, com sobrecapa)",
+    "photo": "images/deus-pai-filho.jpeg"
+  },
+  {
+    "id": 15,
+    "name": "Habitos Espirituais",
+    "author": "David Mathis",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Novo",
+    "photo": "images/habitos.jpeg"
+  },
+  {
+    "id": 16,
+    "name": "R. C. Sproul - A Biografia",
+    "author": "Stephen J. Nichols",
+    "price": "R$ 15,00",
+    "status": "Disponível",
+    "condition": "Novo",
+    "photo": "images/rc-bibliografia.jpeg"
+  },
+  {
+    "id": 17,
+    "name": "Introdução ao Aconcelhamento Bíblico",
+    "author": "John MacArthur",
+    "price": "R$ 15,00",
+    "status": "Disponível",
+    "condition": "Otimo(sem marcas de uso)",
+    "photo": "images/aconcelhamento.jpeg"
+  },
+  {
+    "id": 18,
+    "name": "O Segredo do Contentamento",
+    "author": "William B. Barcley",
+    "price": "R$ 15,00",
+    "status": "Disponível",
+    "condition": "Bom(com marcas de uso)",
+    "photo": "images/segredo-contentamento.jpeg"
+  },
+  {
+    "id": 19,
+    "name": "Esperança na Solidão",
+    "author": "Elisabethe Elliot",
+    "price": "R$ 15,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(sem marcas de uso)",
+    "photo": "images/esperanca-solidao.jpeg"
+  },
+  {
+    "id": 20,
+    "name": "Ester na Casa da Pérsia",
+    "author": "Emilio Garofalo Neto",
+    "price": "R$ 15,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(sem marcas de uso)",
+    "photo": "images/ester-na-casa.jpeg"
+  },
+  {
+    "id": 21,
+    "name": "Cristianismo Puro e Simples",
+    "author": "C.S. Lewis",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(sem marcas de uso)",
+    "photo": "images/cristianismo.jpeg"
+  },
+  {
+    "id": 22,
+    "name": "As Coisas da Terra",
+    "author": "Joe Rigney",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Novo",
+    "photo": "images/coisas-terra.jpeg"
+  },
+  {
+    "id": 23,
+    "name": "Em Busca de Deus",
+    "author": "John Piper",
+    "price": "R$ 20,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(com marcas de uso)",
+    "photo": "images/em-busca.jpeg"
+  },
+  {
+    "id": 24,
+    "name": "Pensamentos Secretos de uma Convertida Improvável",
+    "author": "Rosaria Champangne Butterfield",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Otimo(com marcas do tempo)",
+    "photo": "images/pensamentos.jpeg"
+  },
+  {
+    "id": 25,
+    "name": "Ego Transformado",
+    "author": "Timothy Keller",
+    "price": "R$ 5,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(com marcas de uso)",
+    "photo": "images/ego.jpeg"
+  },
+  {
+    "id": 26,
+    "name": "Tomando Decisões Segundo a Vontade de Deus",
+    "author": "Heber Campos Jr.",
+    "price": "R$ 10,00",
+    "status": "Disponível",
+    "condition": "Usado",
+    "photo": "images/tomando.jpeg"
+  },
+  {
+    "id": 27,
+    "name": "Do Orgulho à Humildade",
+    "author": "Stuart Scott",
+    "price": "R$ 5,00",
+    "status": "Disponível",
+    "condition": "Semi-novo(sem marcas de uso)",
+    "photo": "images/orgulho.jpeg"
+  },
+  {
+    "id": 28,
+    "name": "Fides Reformata",
+    "author": "-",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/reformata.jpeg"
+  },
+  {
+    "id": 29,
+    "name": "Coronavírus e Cristo",
+    "author": "John Piper",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/cristo.jpeg"
+  },
+  {
+    "id": 30,
+    "name": "The Race of Faith",
+    "author": "R. C. Sproul",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Inglês",
+    "photo": "images/race.jpeg"
+  },
+  {
+    "id": 31,
+    "name": "Senhores da Terra",
+    "author": "Don Richardson",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/senhores.jpeg"
+  },
+  {
+    "id": 32,
+    "name": "A Última Música",
+    "author": "Nicholas Sparks",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/musica.jpeg"
+  },
+  {
+    "id": 32,
+    "name": "O Milagre da Manhã",
+    "author": "Hal Elrod",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/milagre.jpeg"
+  },
+  {
+    "id": 33,
+    "name": "Eclipse - Inglês",
+    "author": "Stephenie Meyer",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Inglês",
+    "photo": "images/eclipse.jpeg"
+  },
+  {
+    "id": 34,
+    "name": "Breaking Dawn - Inglês",
+    "author": "Stephenie Meyer",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Inglês",
+    "photo": "images/breakingdown.jpeg"
+  },
+  {
+    "id": 35,
+    "name": "New Moon - Inglês",
+    "author": "Stephenie Meyer",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Inglês",
+    "photo": "images/newmoon.jpeg"
+  },
+  {
+    "id": 36,
+    "name": "Twilight - Inglês",
+    "author": "Stephenie Meyer",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Inglês",
+    "photo": "images/twiligth.jpeg"
+  },
+  {
+    "id": 37,
+    "name": "A Hospedeira",
+    "author": "Stephenie Meyer",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/hospedeira.jpeg"
+  },
+  {
+    "id": 38,
+    "name": "Love an Lies 1(Shounen) - Japonês",
+    "author": "Musawo",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Japonês",
+    "photo": "images/manga1.jpeg"
+  },
+  {
+    "id": 39,
+    "name": "Love an Lies 2(Shounen) - Japonês",
+    "author": "Musawo",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Japonês",
+    "photo": "images/manga2.jpeg"
+  },
+  {
+    "id": 40,
+    "name": "Fallen",
+    "author": "Lauren Kate",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO - Em Português",
+    "photo": "images/fallen.jpeg"
+  },
+  {
+    "id": 41,
+    "name": "Paixão",
+    "author": "Lauren Kate",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/paixao.jpeg"
+  },
+  {
+    "id": 42,
+    "name": "Tormenta",
+    "author": "Lauren Kate",
+    "price": "R$ 0,00",
+    "status": "Disponível",
+    "condition": "DOAÇÃO",
+    "photo": "images/tormenta.jpeg"
+  }
+]
