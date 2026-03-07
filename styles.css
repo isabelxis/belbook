@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+/* reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Georgia', 'Palatino Linotype', Palatino, serif;
+    line-height: 1.6;
+    background: #fffaf0; /* off-white */
+    color: #3e2c29; /* dark brown */
+}
+
+header {
+    background: #3e2c29; /* dark brown */
+    color: #fffaf0; /* off-white */
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 1.5rem;
+}
+
+.book-list {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.book-card {
+    background: #f5eddc; /* light beige */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4x 8px rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e3c16f; /* medium yellow */
+}
+
+.book-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.book-info {
+    padding: .75rem;
+    flex: 1;
+}
+
+.book-info h3 {
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+}
+
+.book-info p {
+    margin-bottom: .25rem;
+    font-size: .9rem;
+}
+
+.book-info .price {
+    font-weight: bold;
+    color: #d98c41; /* orange accent */
+}
+
+.btn-quero {
+    background: #d98c41; /* orange */
+    color: #fffaf0;
+    border: none;
+    padding: .75rem;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background .2s;
+}
+
+.btn-quero:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #f5eddc; /* light beige */
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    border: 1px solid #e3c16f;
+}
+
+.close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: .75rem;
+    font-size: .9rem;
+}
+
+.obs {
+    color: #fa0606;
+    text-align: center;
+    display: block;
+    margin-top: .75rem;
+    font-size: .9rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: .5rem;
+    margin-top: .25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content button {
+    margin-top: 1rem;
+    background: #3e2c29;
+    color: #fffaf0;
+    padding: .75rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 1rem;
+    }
+}

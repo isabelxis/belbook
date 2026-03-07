@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- configure seu número internacional sem sinal +, ex: 5511999999999 -->
+    <meta name="whatsapp-number" content="5585988109889">
+    <title>Bel Store</title>
+    <!-- FontAwesome for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fa-solid fa-b"></i>el
+        <i class="fa-solid fa-b"></i>ookstore <i class="fa-solid fa-book-open-reader"></i></h1>
+    </header>
+
+    <main id="book-list" class="book-list">
+        <!-- livros serão inseridos dinamicamente -->
+    </main>
+
+    <!-- modal de contato -->
+    <div id="contact-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Bel, quero este livro:</h2>
+            <p id="modal-book-name" style="font-weight:bold; margin-bottom:0.5rem;"></p>
+            <form id="contact-form">
+                <label for="buyer-name">Seu nome</label>
+                <input type="text" id="buyer-name" required>
+
+                <label for="buyer-msg">Mensagem</label>
+                <textarea id="buyer-msg" rows="4" required></textarea>
+
+                <button type="submit">Enviar</button>                
+            </form>
+            <label class="obs">Ao clicar enviar você será redirecionado para o WhatsApp para confirmar a aquisição</label>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
