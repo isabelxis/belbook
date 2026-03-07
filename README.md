@@ -1,7 +1,6 @@
 # Frontend Venda de Livros
 
-
-Página responsiva simples para exibir livros à venda. Cada livro mostra nome, autor, preço, status, estado e foto. Há um botão **QUERO** que, ao ser clicado, abre um modal para o comprador informar nome e mensagem.
+Estava precisando vender meus livros e então criei em uma tarde essa página responsiva simples para exibir livros à venda. Cada livro mostra nome, autor, preço, status, estado e foto. Há um botão **QUERO** que, ao ser clicado, abre um modal para o comprador informar nome e mensagem.
 
 Quando o formulário é enviado, uma nova aba do WhatsApp é aberta com mensagem pré-formatada e o status do livro muda para **Vendido** e o botão fica inativo.
 
