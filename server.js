@@ -4,6 +4,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Variaveis de ambiente do arquivo .env são carregadas aqui
+require('dotenv').config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'books.json');
@@ -29,6 +32,10 @@ function writeBooks(books) {
 app.get('/api/books', (req, res) => {
     const books = readBooks();
     res.json(books);
+});
+
+app.get('/api/config', (req, res) => {
+    res.json({ whatsappNumber: process.env.WHATSAPP_NUMBER || '' });
 });
 
 // marca um livro como vendido
@@ -76,6 +83,20 @@ app.put('/api/books/:id', (req, res) => {
     Object.assign(book, updates);
     writeBooks(books);
     res.json(book);
+});
+
+// remover um livro
+app.delete('/api/books/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    let books = readBooks();
+    const index = books.findIndex(b => b.id === id);
+    if (index === -1) {
+        return res.status(404).json({ error: 'Livro não encontrado' });
+    }
+    const [removed] = books.splice(index, 1);
+    writeBooks(books);
+    // opcionalmente retornamos o recurso excluído
+    res.json(removed);
 });
 
 app.listen(PORT, () => {

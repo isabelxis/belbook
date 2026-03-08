@@ -11,19 +11,48 @@ function renderBooks() {
     books.forEach(book => {
         const card = document.createElement('div');
         card.className = 'book-card';
-        card.innerHTML = `
-            <img src="${book.photo}" alt="Foto do livro ${book.name}">
-            <div class="book-info">
-                <h3>${book.name}</h3>
-                <p><em>${book.author || 'Autor desconhecido'}</em></p>
-                <p class="price">${book.price}</p>
-                <p>Status: <span class="status">${book.status}</span></p>
-                <p>Estado: ${book.condition}</p>
-            </div>
-            <button class="btn-quero" ${book.status !== 'Disponível' ? 'disabled' : ''}>QUERO</button>
-        `;
-        const btn = card.querySelector('.btn-quero');
+
+        const img = document.createElement('img');
+        img.src = book.photo;
+        img.alt = `Foto do livro ${book.name}`;
+        card.appendChild(img);
+
+        const info = document.createElement('div');
+        info.className = 'book-info';
+
+        const title = document.createElement('h3');
+        title.textContent = book.name;
+        info.appendChild(title);
+
+        const authorP = document.createElement('p');
+        const authorEm = document.createElement('em');
+        authorEm.textContent = book.author || 'Autor desconhecido';
+        authorP.appendChild(authorEm);
+        info.appendChild(authorP);
+
+        const priceP = document.createElement('p');
+        priceP.className = 'price';
+        priceP.textContent = book.price;
+        info.appendChild(priceP);
+
+        const statusP = document.createElement('p');
+        statusP.innerHTML = 'Status: <span class="status"></span>';
+        statusP.querySelector('.status').textContent = book.status;
+        info.appendChild(statusP);
+
+        const conditionP = document.createElement('p');
+        conditionP.textContent = `Estado: ${book.condition}`;
+        info.appendChild(conditionP);
+
+        card.appendChild(info);
+
+        const btn = document.createElement('button');
+        btn.className = 'btn-quero';
+        btn.textContent = 'QUERO';
+        if (book.status !== 'Disponível') btn.disabled = true;
         btn.addEventListener('click', () => openModal(book));
+        card.appendChild(btn);
+
         bookListEl.appendChild(card);
     });
 }
@@ -47,9 +76,16 @@ window.addEventListener('click', e => {
     if (e.target === modal) closeModal();
 });
 
-// read whatsapp number from meta tag
-const whatsappMeta = document.querySelector('meta[name="whatsapp-number"]');
-const WHATSAPP_NUMBER = whatsappMeta ? whatsappMeta.getAttribute('content') : '';
+// fetch config from server (reads from .env via /api/config)
+let WHATSAPP_NUMBER = '';
+function loadConfig() {
+    return fetch('/api/config')
+        .then(r => r.json())
+        .then(cfg => {
+            WHATSAPP_NUMBER = cfg.whatsappNumber || '';
+        })
+        .catch(err => console.error('Erro carregando config', err));
+}
 
 contactForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -92,4 +128,5 @@ function loadBooks() {
         .catch(e => console.error('Erro carregando livros', e));
 }
 
-loadBooks();
+// primeiro carregamos a config, depois os livros
+loadConfig().then(loadBooks);
