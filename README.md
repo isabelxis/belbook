@@ -22,10 +22,10 @@ Quando o formulário é enviado, uma nova aba do WhatsApp é aberta com mensagem
 - `DELETE /api/books/:id` – remove o livro com o identificador informado (**requer API key**); retorna o recurso excluído.
 - `POST /api/books/:id/sell` – marca um livro como vendido (usado pelo front‑end quando o formulário é enviado). Requer token CSRF obtido em `/api/config` e enviado no cabeçalho `X-CSRF-Token`.
 
-> **Configuração:** o número do WhatsApp não está mais no HTML. Coloque `WHATSAPP_NUMBER=5511999999999` em um arquivo `.env` na raiz ou no ambiente antes de iniciar.
+> **Configuração:** para incluir o número do WhatsApp. Coloque `WHATSAPP_NUMBER=5511999999999` em um arquivo `.env` na raiz ou no ambiente antes de iniciar.
 > Defina também `API_KEY` para proteger as rotas administrativas.
 
-> Você pode testar essas rotas com `curl`, `Postman` ou outro cliente HTTP.
+> Você pode testar essas rotas com `curl`, `Insomnia` ou outro cliente HTTP.
 
 ## Como executar
 
@@ -97,3 +97,4 @@ curl -X POST http://localhost:3000/api/books \
 - `package.json` – dependências Node.js
 
 Fique livre para personalizar o visual e funcionalidades adicionais!
+
