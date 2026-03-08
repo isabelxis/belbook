@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 
 // Variaveis de ambiente do arquivo .env são carregadas aqui
 require('dotenv').config();
@@ -11,8 +13,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'books.json');
 
-app.use(cors());
+// middleware stack
+app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser());
 app.use(bodyParser.json());
+// initialize csurf with cookie-based tokens
+app.use(csrf({ cookie: true }));
 app.use(express.static(path.join(__dirname))); // serve frontend files
 
 function readBooks() {
@@ -35,11 +41,16 @@ app.get('/api/books', (req, res) => {
 });
 
 app.get('/api/config', (req, res) => {
-    res.json({ whatsappNumber: process.env.WHATSAPP_NUMBER || '' });
+    // include csrf token with config
+    res.json({
+        whatsappNumber: process.env.WHATSAPP_NUMBER || '',
+        csrfToken: req.csrfToken(),
+    });
 });
 
 // marca um livro como vendido
 app.post('/api/books/:id/sell', (req, res) => {
+    // csurf middleware will automatically validate token from header/body/cookie
     const id = parseInt(req.params.id, 10);
     const { buyerName, message } = req.body;
     const books = readBooks();

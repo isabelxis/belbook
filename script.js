@@ -78,11 +78,13 @@ window.addEventListener('click', e => {
 
 // fetch config from server (reads from .env via /api/config)
 let WHATSAPP_NUMBER = '';
+let CSRF_TOKEN = '';
 function loadConfig() {
-    return fetch('/api/config')
+    return fetch('/api/config', { credentials: 'include' })
         .then(r => r.json())
         .then(cfg => {
             WHATSAPP_NUMBER = cfg.whatsappNumber || '';
+            CSRF_TOKEN = cfg.csrfToken || '';
         })
         .catch(err => console.error('Erro carregando config', err));
 }
@@ -100,8 +102,10 @@ contactForm.addEventListener('submit', e => {
     // atualizar status no backend
     fetch(`/api/books/${selectedBook.id}/sell`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': CSRF_TOKEN
         },
         body: JSON.stringify({ buyerName: name, message: msg })
     })
