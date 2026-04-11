@@ -4,6 +4,11 @@ Estava precisando vender meus livros e então criei em uma tarde essa página re
 
 Quando o formulário é enviado, uma nova aba do WhatsApp é aberta com mensagem pré-formatada e o status do livro muda para **Vendido** e o botão fica inativo.
 
+Telas:
+<img width="933" height="656" alt="image" src="https://github.com/user-attachments/assets/a03d75a6-a807-4e25-8066-1e0837bff17e" />
+<img width="790" height="510" alt="image" src="https://github.com/user-attachments/assets/4f89c310-ff24-43e8-929b-0ce95c94c581" />
+<img width="880" height="630" alt="image" src="https://github.com/user-attachments/assets/0c9676cf-94e5-44dd-b61b-7ee62c03a665" />
+
 ### Endpoints disponíveis
 - `GET /api/books` – lista todos os livros.
 - `POST /api/books` – adiciona um novo livro (**requer API key**). Exemplo de corpo JSON:
