@@ -26,7 +26,10 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model('Book', bookSchema);
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://isabelxis.github.io',
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
 
