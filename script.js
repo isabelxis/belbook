@@ -4,6 +4,9 @@ const bookListEl = document.getElementById('book-list');
 const modal = document.getElementById('contact-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const contactForm = document.getElementById('contact-form');
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3000'
+        : 'https://belbook.onrender.com';
 let selectedBook = null;
 
 function renderBooks() {
@@ -100,7 +103,7 @@ contactForm.addEventListener('submit', e => {
     window.open(whatsappUrl, '_blank');
 
     // atualizar status no backend
-    fetch(`/api/books/${selectedBook.id}/sell`, {
+    fetch(`${API_URL}/api/books/${selectedBook.id}/sell`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -123,7 +126,7 @@ contactForm.addEventListener('submit', e => {
 
 // carrega inicialmente os livros
 function loadBooks() {
-    fetch('/api/books')
+    fetch(`${API_URL}/api/books`)
         .then(r => r.json())
         .then(data => {
             books = data;
