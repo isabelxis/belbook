@@ -7,6 +7,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
+const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '';
+const CSRF_TOKEN = process.env.CSRF_TOKEN || '';
 
 // Conexão com MongoDB
 mongoose.connect(MONGO_URI)
@@ -28,10 +30,18 @@ const Book = mongoose.model('Book', bookSchema);
 
 app.use(cors({
   origin: 'https://isabelxis.github.io',
-  credentials: true
+  credentials: false
 }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
+
+// Endpoint de configuração pública
+app.get('/api/config', (req, res) => {
+  res.json({
+    whatsappNumber: WHATSAPP_NUMBER,
+    csrfToken: CSRF_TOKEN
+  });
+});
 
 // Listar todos os livros
 app.get('/api/books', async (req, res) => {
@@ -41,6 +51,11 @@ app.get('/api/books', async (req, res) => {
 
 // Marcar livro como vendido
 app.post('/api/books/:id/sell', async (req, res) => {
+  const token = req.headers['x-csrf-token'];
+  if (!token || token !== CSRF_TOKEN) {
+    return res.status(403).json({ error: 'Token inválido' });
+  }
+
   const id = parseInt(req.params.id, 10);
   const book = await Book.findOne({ id });
   if (!book) return res.status(404).json({ error: 'Livro não encontrado' });

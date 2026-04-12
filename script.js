@@ -1,13 +1,16 @@
-let books = []; // será carregado do backend
+let books = [];
 
 const bookListEl = document.getElementById('book-list');
 const modal = document.getElementById('contact-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const contactForm = document.getElementById('contact-form');
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:3000'
-        : 'https://belbook.onrender.com';
+    ? 'http://localhost:3000'
+    : 'https://belbook.onrender.com';
+
 let selectedBook = null;
+let WHATSAPP_NUMBER = '';
+let CSRF_TOKEN = '';
 
 function renderBooks() {
     bookListEl.innerHTML = '';
@@ -63,9 +66,7 @@ function renderBooks() {
 function openModal(book) {
     selectedBook = book;
     const nameEl = document.getElementById('modal-book-name');
-    if (nameEl) {
-        nameEl.textContent = book.name;
-    }
+    if (nameEl) nameEl.textContent = book.name;
     modal.classList.remove('hidden');
 }
 
@@ -79,11 +80,9 @@ window.addEventListener('click', e => {
     if (e.target === modal) closeModal();
 });
 
-// fetch config from server (reads from .env via /api/config)
-let WHATSAPP_NUMBER = '';
-let CSRF_TOKEN = '';
+// Carrega configurações do backend (whatsapp e csrf)
 function loadConfig() {
-    return fetch('/api/config', { credentials: 'include' })
+    return fetch(`${API_URL}/api/config`)
         .then(r => r.json())
         .then(cfg => {
             WHATSAPP_NUMBER = cfg.whatsappNumber || '';
@@ -102,10 +101,8 @@ contactForm.addEventListener('submit', e => {
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
 
-    // atualizar status no backend
     fetch(`${API_URL}/api/books/${selectedBook.id}/sell`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-Token': CSRF_TOKEN
@@ -124,7 +121,7 @@ contactForm.addEventListener('submit', e => {
     });
 });
 
-// carrega inicialmente os livros
+// Carrega os livros do backend
 function loadBooks() {
     fetch(`${API_URL}/api/books`)
         .then(r => r.json())
@@ -135,5 +132,5 @@ function loadBooks() {
         .catch(e => console.error('Erro carregando livros', e));
 }
 
-// primeiro carregamos a config, depois os livros
+// Primeiro carrega config, depois os livros
 loadConfig().then(loadBooks);
