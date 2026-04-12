@@ -1,105 +1,196 @@
-# Frontend Venda de Livros
+# Belbook
 
-Estava precisando vender meus livros e então criei em uma tarde essa página responsiva simples para exibir livros à venda. Cada livro mostra nome, autor, preço, status, estado e foto. Há um botão **QUERO** que, ao ser clicado, abre um modal para o comprador informar nome e mensagem.
+Aplicação web para venda de livros usados, com catálogo visual, contato por WhatsApp e atualização de status de venda.
 
-Quando o formulário é enviado, uma nova aba do WhatsApp é aberta com mensagem pré-formatada e o status do livro muda para **Vendido** e o botão fica inativo.
+O projeto combina:
+- frontend estático (`index.html`, `styles.css`, `script.js`)
+- backend em Node.js + Express (`server.js`)
+- persistência em MongoDB (via Mongoose)
 
-Telas:
-<img width="933" height="656" alt="image" src="https://github.com/user-attachments/assets/a03d75a6-a807-4e25-8066-1e0837bff17e" />
-<img width="790" height="510" alt="image" src="https://github.com/user-attachments/assets/4f89c310-ff24-43e8-929b-0ce95c94c581" />
-<img width="880" height="630" alt="image" src="https://github.com/user-attachments/assets/0c9676cf-94e5-44dd-b61b-7ee62c03a665" />
+## Funcionalidades
 
-### Endpoints disponíveis
-- `GET /api/books` – lista todos os livros.
-- `POST /api/books` – adiciona um novo livro (**requer API key**). Exemplo de corpo JSON:
-  ```json
-  {
-    "name": "Título",
-    "author": "Autor",
-    "price": "R$ 10,00",
-    "status": "Disponível",
-    "condition": "Novo",
-    "photo": "images/arquivo.jpg"
-  }
-  ```
-  O servidor atribui automaticamente um `id`.
-- `PUT /api/books/:id` – atualiza campos de um livro existente (**requer API key**). Envie apenas os atributos que deseja mudar.
-- `DELETE /api/books/:id` – remove o livro com o identificador informado (**requer API key**); retorna o recurso excluído.
-- `POST /api/books/:id/sell` – marca um livro como vendido (usado pelo front‑end quando o formulário é enviado). Requer token CSRF obtido em `/api/config` e enviado no cabeçalho `X-CSRF-Token`.
+- Listagem de livros com foto, autor, preço, estado e status.
+- Botão **QUERO** por livro, com modal para nome e mensagem.
+- Redirecionamento automático para o WhatsApp com mensagem pré-formatada.
+- Mudança de status para `Vendido` após envio do formulário.
+- Endpoints para listar, criar e atualizar livros.
 
-> **Configuração:** para incluir o número do WhatsApp. Coloque `WHATSAPP_NUMBER=5511999999999` em um arquivo `.env` na raiz ou no ambiente antes de iniciar.
-> Defina também `API_KEY` para proteger as rotas administrativas.
+## Arquitetura atual
 
-> Você pode testar essas rotas com `curl`, `Insomnia` ou outro cliente HTTP.
+- O frontend escolhe a API automaticamente:
+  - `http://localhost:3000` quando roda localmente (`localhost`/`127.0.0.1`)
+  - `https://belbook.onrender.com` em produção
+- O backend expõe:
+  - arquivos estáticos da raiz do projeto
+  - API REST em `/api/*`
+- O backend exige conexão MongoDB via `MONGO_URI`.
 
-## Como executar
+## Requisitos
 
-> Observação de segurança: as requisições que alteram o estado usam proteção CSRF via cookie. O navegador deve permitir cookies de mesmo site; não há autenticação (mas o mecanismo impede sites de terceiros de dispararem comandos).
+- Node.js 18+
+- npm
+- MongoDB acessível (local ou Atlas)
 
+## Variáveis de ambiente
 
-Configure a variável de ambiente do WhatsApp (por exemplo em `.env`):
+Variáveis usadas pelo backend:
+
+- `MONGO_URI` (obrigatória): string de conexão do MongoDB.
+- `WHATSAPP_NUMBER` (opcional): número no formato internacional, sem `+` (ex: `5511999999999`).
+- `CSRF_TOKEN` (opcional, mas recomendado): token exigido no endpoint de venda.
+- `PORT` (opcional): porta HTTP (padrão `3000`).
+
+Exemplo:
 
 ```bash
-# na raiz do projeto
-WHATSAPP_NUMBER=5511999999999
-API_KEY=sua-chave-forte-aqui
+export MONGO_URI='mongodb+srv://usuario:senha@cluster/db'
+export WHATSAPP_NUMBER='5511999999999'
+export CSRF_TOKEN='seu_token_forte'
 npm start
 ```
 
-Se estiver usando Docker, adicione `ENV WHATSAPP_NUMBER=5511999999999`.
+Observação importante: o projeto não carrega `.env` automaticamente (não usa `dotenv` no código). Se quiser usar o arquivo `.env`, carregue as variáveis antes de iniciar o servidor.
 
+## Como rodar localmente
 
-### 1. dentro do WSL (Linux)
-Se você estiver usando o WSL, **não use o npm do Windows**. instale o Node.js no Linux e execute os comandos a partir da distro:
+1. Instale dependências:
 
 ```bash
-# instale Node/npm (exemplo via nvm):
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-source ~/.bashrc
-nvm install --lts
-
-# dentro da pasta do projeto
-cd /home/isabe/github/belbook
 npm install
-npm start  # servidor iniciará em http://localhost:3000
 ```
 
-Se preferir, use `sudo apt install nodejs npm` em vez de nvm, mas jamais misture com o binário do Windows (que fica em `/mnt/c/…`).
+2. Exporte as variáveis de ambiente (principalmente `MONGO_URI`).
 
-### 2. usando Docker
-Um `Dockerfile` está incluído; para build e execução:
+3. Inicie o servidor:
 
 ```bash
-docker build -t belbook .          # cria a imagem
-
-docker run --rm -p 3000:3000 belbook
-# (opcional, para manter books.json persistente)
-# docker run --rm -p 3000:3000 \
-#     -v "$(pwd)/books.json:/app/books.json" \
-#     belbook
+npm start
 ```
 
-Após isso, o app também estará disponível em `http://localhost:3000`.
+4. Acesse:
 
-## Uso da API key
-Envie a chave no cabeçalho `x-api-key` (ou `Authorization: Bearer <chave>`) nas rotas administrativas.
+- `http://localhost:3000`
+
+## Popular banco com `books.json`
+
+Use o script de seed para importar os livros do arquivo `books.json`:
+
+```bash
+MONGO_URI='mongodb+srv://usuario:senha@cluster/db' node seed.js
+```
+
+O script remove todos os livros existentes antes de inserir os novos.
+
+## Docker
+
+Build da imagem:
+
+```bash
+docker build -t belbook .
+```
+
+Execução (passando variáveis de ambiente):
+
+```bash
+docker run --rm -p 3000:3000 \
+  -e MONGO_URI='mongodb+srv://usuario:senha@cluster/db' \
+  -e WHATSAPP_NUMBER='5511999999999' \
+  -e CSRF_TOKEN='seu_token_forte' \
+  belbook
+```
+
+## API
+
+### `GET /api/config`
+Retorna configurações públicas consumidas pelo frontend.
+
+Resposta esperada:
+
+```json
+{
+  "whatsappNumber": "5511999999999",
+  "csrfToken": "..."
+}
+```
+
+### `GET /api/books`
+Lista todos os livros ordenados por `id` crescente.
+
+### `POST /api/books/:id/sell`
+Marca o livro como vendido.
+
+Regras:
+- exige header `X-CSRF-Token` igual ao `CSRF_TOKEN` do servidor
+- falha com `404` se livro não existir
+- falha com `400` se já estiver vendido
+
+Exemplo:
+
+```bash
+curl -X POST http://localhost:3000/api/books/9/sell \
+  -H 'X-CSRF-Token: seu_token_forte' \
+  -H 'Content-Type: application/json' \
+  -d '{}'
+```
+
+### `POST /api/books`
+Cria um novo livro.
+
+Regras:
+- `name` e `price` são obrigatórios
+- `id` é gerado automaticamente (último id + 1)
 
 Exemplo:
 
 ```bash
 curl -X POST http://localhost:3000/api/books \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: sua-chave-forte-aqui" \
-  -d '{"name":"Livro","author":"Autor","price":"R$ 10,00","status":"Disponível","condition":"Novo","photo":"images/arquivo.jpg"}'
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Novo Livro",
+    "author": "Autor",
+    "price": "R$ 25,00",
+    "status": "Disponível",
+    "condition": "Ótimo",
+    "photo": "images/capa.jpeg"
+  }'
 ```
 
-## Estrutura de arquivos
-- `index.html` – marcação básica e modal
-- `styles.css` – estilos responsivos
-- `script.js` – lógica front-end (busca de livros no backend)
-- `server.js` – servidor Express simples
-- `books.json` – dados persistidos dos livros
-- `package.json` – dependências Node.js
+### `PUT /api/books/:id`
+Atualiza campos de um livro existente.
+
+Exemplo:
+
+```bash
+curl -X PUT http://localhost:3000/api/books/9 \
+  -H 'Content-Type: application/json' \
+  -d '{ "price": "R$ 20,00", "condition": "Bom" }'
+```
+
+## CORS
+
+O backend está configurado com CORS para `https://isabelxis.github.io`.
+
+## Estrutura do projeto
+
+- `index.html`: layout e modal de contato
+- `styles.css`: estilo responsivo
+- `script.js`: renderização dos cards e integração com API/WhatsApp
+- `server.js`: API Express + conexão MongoDB
+- `seed.js`: importação de `books.json` para MongoDB
+- `books.json`: base inicial de livros
+- `images/`: capas/fotos dos livros
+- `Dockerfile`: containerização da aplicação
+- `.github/workflows/static.yml`: deploy de conteúdo estático para GitHub Pages
+
+## Script disponível
+
+- `npm start`: inicia o servidor (`node server.js`)
+
+## Telas
+
+<img width="933" height="656" alt="image" src="https://github.com/user-attachments/assets/a03d75a6-a807-4e25-8066-1e0837bff17e" />
+<img width="790" height="510" alt="image" src="https://github.com/user-attachments/assets/4f89c310-ff24-43e8-929b-0ce95c94c581" />
+<img width="880" height="630" alt="image" src="https://github.com/user-attachments/assets/0c9676cf-94e5-44dd-b61b-7ee62c03a665" />
+
 
 Fique livre para personalizar o visual e funcionalidades adicionais!
-
